@@ -4,6 +4,7 @@ const helper = require('./test_helper')
 const app = require('../src/app')
 const api = supertest(app)
 const Blog = require('../models/blog')
+// const initialBlogs = require('./test_helper')
 //const { deleteOne } = require('../models/blog')
 
 jest.useFakeTimers()
@@ -73,6 +74,10 @@ test('checking to send data without url and title', async () => {
   }
 })
 
+//test to delete a particular entry
+test('test to delete a single blog post', async () => {
+  const finalBlog = 
+})
 afterAll(() => {
   mongoose.connection.close()
 })

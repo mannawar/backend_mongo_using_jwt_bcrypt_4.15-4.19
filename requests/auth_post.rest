@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/users
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hbm5hd2FyX1phcmllbiIsImlkIjoiNWY1MjQ5NDhlZTAzYzcyM2RjNDIwY2NiIiwiaWF0IjoxNTk5MjI4MjYwfQ.llTDyE6NHDcMaxn3LCjQIfmp1fIUybsFXCkdhUHqDaQ
+
+{
+    "username": "second_attempt_of_testing_for changed username after login_auth_using_jwt",
+    "name": "Zarien Mannawar",
+    "password": "zarr"
+}
