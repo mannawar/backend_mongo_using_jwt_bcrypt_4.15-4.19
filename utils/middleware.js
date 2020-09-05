@@ -1,4 +1,6 @@
 const logger = require('./logger')
+const jwt = require('jsonwebtoken')
+const { JsonWebTokenError } = require('jsonwebtoken')
 
 const requestLogger = (request, response, next) => {
   logger.info('Method:', request.method)
@@ -24,8 +26,27 @@ const errorHandler = (error, request, response, next) => {
   next(error)
 }
 
+const tokenExtractor = (request, response, next) => {
+  // code that extracts the token
+  const authHeader = request.headers.authorization
+
+  if(authHeader) {
+    const token = authHeader.split(' ')[1]
+
+    jwt.verify(token, process.env.SECRET, (error, user) => {
+      if(error) {
+        return response.sendStatus(403)
+      }
+      request.user = user
+      next()
+    })
+  } else {
+    response.sendStatus(401)
+  }
+}
+
 module.exports = {
   requestLogger,
   unknownEndpoint,
-  errorHandler
+  errorHandler, tokenExtractor
 }

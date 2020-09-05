@@ -2,16 +2,10 @@ const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
-// blogsRouter.get('/', async (request, response) => {
-//   const blogs = await Blog.find({})
-//   response.json(blogs.map(blog => blog.toJSON()))
-// })
-
-//to join blog with user from database
 
 blogsRouter.get('/', async (request, response) => {
   const blogs = await Blog
-    .find({}).populate('users')
+    .find({}).populate('user', { username: 1, name: 1 })
 
   response.json(blogs)
 })
@@ -77,8 +71,18 @@ blogsRouter.put('/:id', (request, response, next) => {
 
 //remove
 blogsRouter.delete('/:id', async (request, response) => {
-  await Blog.findByIdAndRemove(request.params.id)
-  response.status(204).end()
+
+  //Make sure the token sent with request for deleting is same as that of blog creator
+
+  //fetch the blog from database
+  const blog = await Blog.findById('id')
+
+  //comparing the id fetched from the blog and requested id
+  if ( blog.user.toString() === userid.toString() ) {
+    await Blog.findByIdAndRemove(request.params.id)
+    response.status(204).end()
+  }
+
 })
 
 module.exports = blogsRouter
