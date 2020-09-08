@@ -1,4 +1,4 @@
-POST http://localhost:3003/api/users
+DELETE http://localhost:3003/api/blogs/:5f5484a994f795336455df19
 Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hbm5fMSIsImlkIjoiNWY1MjRlZWFlZTAzYzcyM2RjNDIwY2NmIiwiaWF0IjoxNTk5MjI5NzQzfQ.MKqFoc1oywIh4O9-OR2PrSku4CjQja-HlzFlIl4P2Is
 

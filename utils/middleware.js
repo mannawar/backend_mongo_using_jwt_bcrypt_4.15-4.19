@@ -37,7 +37,7 @@ const tokenExtractor = (request, response, next) => {
       if(error) {
         return response.sendStatus(403)
       }
-      request.user = user
+      request.token = user
       next()
     })
   } else {
